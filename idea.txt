@@ -1,0 +1,10 @@
+T.init
+
+T.origin_to_center(x, y)
+T.rotate(alpha, beta, gamma)
+T.translate(dx, dy, dz)
+T.zoom(0.5)
+T.origin_to_corner()
+
+T.transform(frame)
+T.get_homography()
