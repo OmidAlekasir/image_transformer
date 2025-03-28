@@ -7,8 +7,9 @@ from core.spherical_transformer import SphericalTransformer
 
 """
 In this example, the image is rotating around an arbitrary origin. To do this,
-the image is moved several pixels to the left, rotated, then traslated to its
-orignal position.
+the image is moved several pixels to the upper-left corner, rotated, then
+traslated to its orignal position.
+The rotation is around the z-axis.
 """
 
 if __name__ == '__main__':
@@ -20,17 +21,34 @@ if __name__ == '__main__':
 
     T = SphericalTransformer(width, height, 70)
 
-    beta = 0
+    gamma = 0
+    limit = 20
+    flag = 0
     while True:
 
-        beta += 2
+        if gamma <= -limit:
+            flag = 1
+        if gamma >= limit:
+            flag = 0
 
-        T.translate(dx = width // 2)
-        T.rotate(beta = beta)
-        T.translate(dx = -width // 2)
-        dst = T.transform(src_resized)
-        
-        cv2.imshow('dst', dst)
+        if flag:
+            gamma +=1
+        else:
+            gamma -=1
+
+        # around the origin (0, 0, 0)
+        T.rotate(gamma = gamma)
+        dst1 = T.transform(src_resized)
+
+        # around (0, 0, 200)
+        T.translate(dx = 640//2, dy = 480//2)
+        T.rotate(gamma = gamma)
+        T.translate(dx = -640//2, dy = -480//2)
+        dst2 = T.transform(src_resized)
+
+        # show the results
+        cv2.imshow('Rotation origin = (0, 0, 0)', dst1)
+        cv2.imshow('Rotation origin = (0, 0, 200)', dst2)
 
         if cv2.waitKey(10) & 0xFF == ord('q'):
             break

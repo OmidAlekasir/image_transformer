@@ -9,6 +9,7 @@ from core.spherical_transformer import SphericalTransformer
 In this example, the image is rotating around an arbitrary origin. To do this,
 the image is moved several pixels deeper into the z-axis, rotated, then
 traslated to its orignal position.
+The rotation is around the y-axis.
 """
 
 if __name__ == '__main__':
@@ -44,9 +45,17 @@ if __name__ == '__main__':
         T.rotate(beta = beta)
         T.translate(dz = -200)
         dst2 = T.transform(src_resized)
-        
-        cv2.imshow('Origin', dst1)
-        cv2.imshow('New origin', dst2)
+
+        # around (0, 0, -200)
+        T.translate(dz = -200)
+        T.rotate(beta = beta)
+        T.translate(dz = 200)
+        dst3 = T.transform(src_resized)
+
+        # show the results
+        cv2.imshow('Rotation origin = (0, 0, 0)', dst1)
+        cv2.imshow('Rotation origin = (0, 0, 200)', dst2)
+        cv2.imshow('Rotation origin = (0, 0, -200)', dst3)
 
         if cv2.waitKey(10) & 0xFF == ord('q'):
             break
