@@ -3,7 +3,7 @@ import cv2
 import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from core.spherical_transformer import SphericalTransformer
+from core.spherical_image_transformer import SphericalImageTransformer
 
 """
 In this example, the image is rotating around an arbitrary origin. To do this,
@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
     height, width, _ = src_resized.shape
 
-    T = SphericalTransformer(width, height, 70)
+    T = SphericalImageTransformer(width, height, 70)
 
     gamma = 0
     limit = 20
