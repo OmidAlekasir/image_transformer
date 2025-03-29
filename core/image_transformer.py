@@ -1,7 +1,7 @@
 import numpy as np
 
-class SphericalImageTransformer():
-    """ Spherical Perspective Transformation"""
+class ImageTransformer():
+    """ Perspective Transformation"""
 
     def __init__(self, width, height, fov_vertical = 70):
         self.width = width
