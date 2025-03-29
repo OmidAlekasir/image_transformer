@@ -1,4 +1,4 @@
-# SphericalTransformer
+# spherical_image_transformer
 ## Abstract
 This repository provides a tool for 3D image transformations, including rotations and translations in spherical coordinates. The transformations operate in three-dimensional space using sequential logic through the main class.
 

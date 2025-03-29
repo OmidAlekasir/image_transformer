@@ -1,6 +1,6 @@
 import numpy as np
 
-class SphericalTransformer():
+class SphericalImageTransformer():
     """ Spherical Perspective Transformation"""
 
     def __init__(self, width, height, fov_vertical = 70):
