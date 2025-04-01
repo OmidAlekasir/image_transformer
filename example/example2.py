@@ -1,9 +1,5 @@
+from img3d import ImageTransformer
 import cv2
-
-import sys
-import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from core.image_transformer import ImageTransformer
 
 """
 In this example, the image is rotating around an arbitrary origin. To do this,
@@ -24,6 +20,8 @@ if __name__ == '__main__':
     beta = 0
     limit = 20
     flag = 0
+    d = 300
+
     while True:
 
         if beta <= -limit:
@@ -41,15 +39,15 @@ if __name__ == '__main__':
         dst1 = T.transform(src_resized)
 
         # around (0, 0, 200)
-        T.translate(dz = 200)
+        T.translate(dz = d)
         T.rotate(beta = beta)
-        T.translate(dz = -200)
+        T.translate(dz = -d)
         dst2 = T.transform(src_resized)
 
         # around (0, 0, -200)
-        T.translate(dz = -200)
+        T.translate(dz = -d)
         T.rotate(beta = beta)
-        T.translate(dz = 200)
+        T.translate(dz = d)
         dst3 = T.transform(src_resized)
 
         # show the results

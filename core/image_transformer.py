@@ -64,18 +64,18 @@ class ImageTransformer():
         return self
     
     def zoom(self, zoom = 1):
-        T = np.array([  [zoom, 0, 0, 0],
+        Z = np.array([  [zoom, 0, 0, 0],
                         [0, zoom, 0, 0],
                         [0, 0, 1, 0],
                         [0, 0, 0, 1]])
         
-        self.H = T @ self.H
+        self.H = Z @ self.H
 
         return self
     
     def get_homography(self):
         
-        # reset the image coordinates to the top-left corner
+        # send the image deeper in the z axis, to the focal point
         self.translate(dz = self.f)
 
         # Projection 3D -> 2D matrix
