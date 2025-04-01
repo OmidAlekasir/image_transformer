@@ -16,6 +16,7 @@ The library's primary output is a 3×3 homography matrix, which can be directly 
 
 ## Description
 The `img3d` library treats the image center as the origin of the coordinate system during transformations. Each pixel in the image data is represented as:
+
 $$
 f =
 \begin{bmatrix}
@@ -24,9 +25,11 @@ y \\
 1 \\
 \end{bmatrix}
 $$
+
 where $x$ and $y$ are the pixel coordinates respectively.
 
 The translation matrix is defined as:
+
 $$
 T(dx, dy, dz) =
 \begin{bmatrix}
@@ -38,6 +41,7 @@ T(dx, dy, dz) =
 $$
 
 The rotation matrices are defined as:
+
 $$
 R_x(\alpha) =
 \begin{bmatrix}
@@ -75,6 +79,7 @@ The algorithm of 3D image transformation in this class is as below:
 **Step 1**: 2D to 3D projection ($A_1$)
 
 The first step is to bring the image into a 3D space, using the following 2D to 3D projection matrix:
+
 $$
 A_1 =
 \begin{bmatrix}
@@ -100,6 +105,7 @@ In this step, the image is positioned at the focal point of the image. For more 
 **Step 5**: 3D to 2D projection ($A_2$)
 
 The following matrix moves the image to the origin and from 3D to 2D coordinates, forming the final $3\times3$ homography matrix.
+
 $$
 A_2 =
 \begin{bmatrix}
