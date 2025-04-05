@@ -1,10 +1,12 @@
 # image_transformer
 **The `img3d` library unlocks infinite possibilities.**
 
-In the following example, the image rotates around the points $(0, 0, 300)$ and $(0, 0, -300)$ in a 3-dimensional Cartesian space. Can you spot the difference?
+* In the following example, the image rotates around the points $(0, 0, 300)$ and $(0, 0, -300)$ in a 3-dimensional Cartesian space. Can you spot the difference?
+
 ![Alt Text](src/beta.gif)
 
-This example demonstrates that the rotation center plays a critical role.
+* This example demonstrates that the rotation center plays a critical role.
+
 ![Alt Text](src/gamma.gif)
 ## Abstract
 This repository provides a tool for 3D image transformations, including rotations and translations in 3D Cartesian coordinates. The transformations are implemented in 3D space using the sequential logic of the main class.
