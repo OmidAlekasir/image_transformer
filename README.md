@@ -1,4 +1,11 @@
 # image_transformer
+**The `img3d` library unlocks infinite possibilities.**
+
+In the following example, the image rotates around the points $(0, 0, 300)$ and $(0, 0, -300)$ in a 3-dimensional Cartesian space. Can you spot the difference?
+![Alt Text](src/beta.gif)
+
+This example demonstrates that the rotation center plays a critical role.
+![Alt Text](src/gamma.gif)
 ## Abstract
 This repository provides a tool for 3D image transformations, including rotations and translations in 3D Cartesian coordinates. The transformations are implemented in 3D space using the sequential logic of the main class.
 
@@ -12,7 +19,7 @@ pip install img3d
 ## Introduction
 Image transformation is a critical component of image processing, particularly for data fusion in real-time applications. This class enables users to perform 3D rotations and translations on images in any desired spatial configuration.
 
-The library's primary output is a 3×3 homography matrix, which can be directly integrated with perspective-warping functions in image processing libraries such as **OpenCV**, **VPI**, or other compatible frameworks. By default, the `ImageTransformer` leverages **OpenCV** (if installed) for efficient implementation.
+The library's primary output is a $3\times3$ homography matrix, which can be directly integrated with perspective-warping functions in image processing libraries such as **OpenCV**, **VPI**, or other compatible frameworks. By default, the `ImageTransformer` leverages **OpenCV** (if installed) for efficient implementation.
 
 ## Description
 The `img3d` library treats the image center as the origin of the coordinate system during transformations. Each pixel in the image data is represented as:
