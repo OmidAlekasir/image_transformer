@@ -28,11 +28,13 @@ The `img3d` library treats the image center as the origin of the coordinate syst
 
 $$
 f =
-\begin{bmatrix}
+\left[
+\begin{matrix}
 x \\
 y \\
 1 \\
-\end{bmatrix}
+\end{matrix}
+\right]
 $$
 
 where $x$ and $y$ are the pixel coordinates respectively.
@@ -41,44 +43,52 @@ The translation matrix is defined as:
 
 $$
 T(dx, dy, dz) =
-\begin{bmatrix}
+\left[
+\begin{matrix}
 1 & 0 & 0 & dx \\
 0 & 1 & 0 & dy \\
 0 & 0 & 1 & dz \\
 0 & 0 & 0 & 1 \\
-\end{bmatrix}
+\end{matrix}
+\right]
 $$
 
 The rotation matrices are defined as:
 
 $$
 R_x(\alpha) =
-\begin{bmatrix}
+\left[
+\begin{matrix}
 1 & 0 & 0 & 0 \\
 0 & cos(\alpha) & -sin(\alpha) & 0 \\
 0 & sin(\alpha) & cos(\alpha) & 0 \\
 0 & 0 & 0 & 1 \\
-\end{bmatrix}
+\end{matrix}
+\right]
 $$
 
 $$
 R_y(\beta) =
-\begin{bmatrix}
+\left[
+\begin{matrix}
 cos(\beta) & 0 & -sin(\beta) & 0 \\
 0 & 1 & 0 & 0 \\
 sin(\beta) & 0 & cos(\beta) & 0 \\
 0 & 0 & 0 & 1 \\
-\end{bmatrix}
+\end{matrix}
+\right]
 $$
 
 $$
 R_z(\gamma) =
-\begin{bmatrix}
+\left[
+\begin{matrix}
 cos(\gamma) & -sin(\gamma) & 0 & 0 \\
 sin(\gamma) & cos(\gamma) & 0 & 0 \\
 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 1 \\
-\end{bmatrix}
+\end{matrix}
+\right]
 $$
 
 Given that most image processing frameworks (e.g., OpenCV) define the origin of coordinates at the upper-left corner, it is essential to translate the image center to this reference point. This adjustment ensures proper rotational transformations, as the image center serves as the logical origin in real-world applications. After the desired rotation ($R_{4\times4}$) and translation ($T_{4\times4}$) matrices are applied by the user, the image center is restored to its original position.
@@ -91,12 +101,14 @@ The first step is to bring the image into a 3D space, using the following 2D to 
 
 $$
 A_1 =
-\begin{bmatrix}
+\left[
+\begin{matrix}
 1 & 0 & 0 \\
 0 & 1 & 0 \\
 0 & 0 & 1 \\
 0 & 0 & 1 \\
-\end{bmatrix}
+\end{matrix}
+\right]
 $$
 
 **Step 2**: Center to origin ($T_c$)
@@ -117,11 +129,13 @@ The following matrix moves the image to the origin and from 3D to 2D coordinates
 
 $$
 A_2 =
-\begin{bmatrix}
+\left[
+\begin{matrix}
 f & 0 & \frac{W}{2} & 0 \\
 0 & f & \frac{H}{2} & 0 \\
 0 & 0 & 1 & 0 \\
-\end{bmatrix}
+\end{matrix}
+\right]
 $$
 
 By going through these steps, the final homography matrix is formed, using the following matrix multiplication.
@@ -133,8 +147,9 @@ $$
 Then, the homography matrix $H$ is applied to the image, using the following formula (using OpenCV or VPI):
 
 $$
-f_{new}=Hf
+F_{new}=HF
 $$
+where $F$ is the matrix of the image and $F_{new}$ is the result of the image transformation.
 
 Note that in case that $M=I_{4\times4}$, the image stays intact.
 
